@@ -1,14 +1,14 @@
 import { AuthProvider } from "reactfire";
 import { getAuth } from "firebase/auth";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./config/router";
 
 function App() {
-  const auth = getAuth()
+  const auth = getAuth();
   return (
     <AuthProvider sdk={auth}>
-      <div className="text-center">
-        <h1 className="text-4xl font-semibold text-blue-500">¡Hola Tailwind!</h1>
-      </div>
-    </AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider> // hacer el router
   );
 }
 

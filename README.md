@@ -158,3 +158,58 @@ function Login() {
   );
 }
 ```
+
+# Para las rutas react-router-dom
+
+```
+npm install react-router-dom
+```
+
+## Creamos un archivo route de la siguiente manera
+```
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />
+      },
+      {
+        path: "/dashboard",
+        element: <PrivateLayout />,
+        children: [
+          {
+            index: true,
+            element: <DashboardPage />
+          },
+          {
+            path: "/dashboard/:id",
+            element: <DashboardId />
+          },
+          {
+            path: 'settings',
+            element: <div className="ml-64">Settings</div>
+          }
+        ]
+      }
+    ]
+  },
+])
+```
+
+### Este archivo lo usamos en el componente principal encerrando la app a la que queremos hacer las rutas
+  ejemplo:
+```
+function App() {
+  const app = useFirebaseApp();
+  const auth = getAuth(app); //verifica si hay una seccion activa
+
+  return (
+    <AuthProvider sdk={auth}>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
+  );
+}
+```
