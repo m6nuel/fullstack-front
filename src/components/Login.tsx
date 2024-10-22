@@ -30,15 +30,8 @@ const Login = () => {
   if (user?.isAnonymous === false) {
     return (
       <>
-      <p className="m-1">hola, {user.displayName}</p>
-      <UserMenu handleLogout={handleLogout} user={user} />
-        {/* <button
-          // className="block px-2 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2"
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleLogout}
-        >
-          Logout
-        </button> */}
+        <p className="hidden md:block m-1">hola, {user.displayName}</p>
+        <UserMenu handleLogout={handleLogout} user={user} />
       </>
     );
   }

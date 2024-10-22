@@ -38,12 +38,6 @@ const HeaderMain = () => {
           {/* Botón de login en la derecha */}
           <div className="hidden md:flex items-center">
             <Login />
-            {/* <Link
-              to="/login"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Login
-            </Link> */}
           </div>
 
           {/* Menú móvil */}
@@ -82,7 +76,7 @@ const HeaderMain = () => {
 
         {/* Menú desplegable para móviles */}
         {isOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden ml-auto text-right">
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -99,7 +93,7 @@ const HeaderMain = () => {
             >
               Posts
             </NavLink>
-            <div>
+            <div className="block px-2 py-2">
               <Login />
             </div>
           </div>
@@ -108,4 +102,5 @@ const HeaderMain = () => {
     </div>
   );
 };
+
 export default HeaderMain;

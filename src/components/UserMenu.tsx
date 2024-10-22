@@ -48,20 +48,20 @@ const UserMenu = ({ user, handleLogout }: { user: User; handleLogout: () => void
 
       {/* Menú desplegable */}
       {isMenuOpen && (
-        <div className="absolute bg-slate-400 right-0 mt-0 w-48 rounded-md shadow-lg z-20">
+        <div className="absolute bg-gray-700 right-0 mt-0 w-48 rounded-md shadow-lg z-20">
           <ul className="py-1">
             <li>
-              <button onClick={handlePerfil} className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-300 w-full text-left">
+              <button onClick={handlePerfil} className="block px-4 py-2 text-sm hover:bg-slate-300 w-full text-left">
                 <NavLink to="/perfil">Mi perfil</NavLink>
               </button>
             </li>
             <li>
-              <button onClick={handleConfg} className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-300 w-full text-left">
+              <button onClick={handleConfg} className="block px-4 py-2 text-sm hover:bg-slate-300 w-full text-left">
                 <NavLink to="/configuracion">Configuración</NavLink>
               </button>
             </li>
             <li>
-              <button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-300 w-full text-left">
+              <button onClick={handleLogout} className="block px-4 py-2 text-sm hover:bg-red-300 w-full text-left">
                 Logout
               </button>
             </li>
