@@ -1,6 +1,6 @@
 const Perfil = () => {
   return (
-    <div>Perfil</div>
+    <div className="text-gray-700">Perfil</div>
   )
 }
 export default Perfil

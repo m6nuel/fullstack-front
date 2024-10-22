@@ -6,7 +6,7 @@ const HeaderMain = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-gray-800 text-white">
+    <div className="bg-gray-800 text-white fixed top-0 w-full">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
@@ -31,7 +31,7 @@ const HeaderMain = () => {
                 isActive ? 'text-blue-400' : 'hover:text-blue-300'
               }
             >
-              Posts
+              Crear Posts
             </NavLink>
           </div>
 
@@ -91,7 +91,7 @@ const HeaderMain = () => {
                 isActive ? 'block px-2 py-2 text-blue-400' : 'block px-2 py-2 hover:text-blue-300'
               }
             >
-              Posts
+              Crear Posts
             </NavLink>
             <div className="block px-2 py-2">
               <Login />
