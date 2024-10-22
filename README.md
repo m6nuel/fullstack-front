@@ -215,3 +215,6 @@ function App() {
 ```
 
 ## En la branch route estan las rutas y el menu desplegable
+route 
+context
+zustand --> para aprendizaje en el futuro
