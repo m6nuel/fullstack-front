@@ -1,48 +1,62 @@
+import { useEffect } from "react";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { useAuth, useUser } from "reactfire";
+import { useUserApp } from "../hooks/useUserApp";
 import UserMenu from "./UserMenu";
 
-// import { useSigninCheck } from "reactfire";
-
 const Login = () => {
-  const { data: user } = useUser();
-  // const { status, data } = useSigninCheck();
-  // console.log(status, data)
-  const getToken = async () => {
-    const token = await user?.getIdToken();
-    // console.log(token); // user un estado global para almacenar el token
-    return token;
-  };
-  getToken();
-
+  const { data: user } = useUser(); // Usuario autenticado actual de Firebase
   const auth = useAuth();
+  const { updateUser, user: userInContext } = useUserApp(); // Actualizar contexto del usuario
 
-  const handleGoogleSingIn = async () => {
+  // Sincronización inicial del estado del contexto con la sesión activa de Firebase
+  useEffect(() => {
+    if (user && (!userInContext || user.uid !== userInContext.uid)) {
+      console.log("Sincronizando usuario al contexto...");
+      updateUser(user); // Actualiza el contexto si hay un usuario activo y es diferente al del contexto
+    }
+  }, [user, userInContext, updateUser]);
+  
+
+  // Inicio de sesión con Google
+  const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user
+    if (user) {
+      // console.log("Sesión iniciada con:", result.user);
+      updateUser(user); // Actualiza el contexto con el usuario recién autenticado
+    }
+    // setTimeout(() => {
+    //   console.log("Sesión iniciada con:", result.user);
+    //   updateUser(result.user); // Actualiza el contexto con la información del usuario
+    // }, 0);
   };
 
+  // Cierre de sesión
   const handleLogout = async () => {
     await signOut(auth);
+    updateUser(null); // Limpia el contexto al cerrar sesión
   };
 
-  console.log(user);
-  if (user?.isAnonymous === false) {
+  // Renderizado basado en la autenticación del usuario
+  if (user) {
     return (
       <>
-        <p className="hidden md:block m-1">hola, {user.displayName}</p>
+        <p className="hidden md:block m-1">Hola, {user.displayName}</p>
         <UserMenu handleLogout={handleLogout} user={user} />
       </>
     );
   }
+
   return (
     <button
-      // className="block px-2 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2"
       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      onClick={handleGoogleSingIn}
+      onClick={handleGoogleSignIn}
     >
       Login
     </button>
   );
 };
+
 export default Login;

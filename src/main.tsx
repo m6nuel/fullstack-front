@@ -4,11 +4,14 @@ import App from "./App.tsx";
 import "./index.css";
 import { FirebaseAppProvider } from "reactfire";
 import { firebaseConfig } from "./config/firebase-config.ts";
+import { AppProvider } from "./context/AppContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <App />
-    </FirebaseAppProvider>
+    <AppProvider>
+      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+        <App />
+      </FirebaseAppProvider>
+    </AppProvider>
   </StrictMode>
 );

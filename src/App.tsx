@@ -8,7 +8,7 @@ function App() {
   return (
     <AuthProvider sdk={auth}>
       <RouterProvider router={router}></RouterProvider>
-    </AuthProvider> // hacer el router
+    </AuthProvider>
   );
 }
 
