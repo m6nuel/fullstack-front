@@ -16,9 +16,10 @@ export const useUserApp = () => {
 
   const updateUser = (user: UserApp | null) => {
     // console.log("Actualizando usuario en el contexto a:", user);
-    setInitialState(({
+    const us = user ? { email: user.email || null, displayName: user.displayName || null, uid: user.uid } : undefined
+    return setInitialState(({
       ...initialState,
-      user: user ? { email: user.email || null, displayName: user.displayName || null, uid: user.uid } : null, // Asigna el usuario o null si no está autenticado
+      user: us, // Asigna el usuario o null si no está autenticado
     }));
   };
 

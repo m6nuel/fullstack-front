@@ -4,8 +4,13 @@ export interface UserApp {
   displayName: string | null;
 }
 
+export interface TemaType {
+  tema: string;
+}
+
 export interface InitState {
-  user: UserApp | null;
+  user: UserApp | undefined;
+  temas: TemaType[] | [];
 }
 
 export interface AppContextType {
