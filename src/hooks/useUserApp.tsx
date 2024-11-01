@@ -39,8 +39,9 @@ export const useUserApp = () => {
         throw new Error('Credenciales incorrectas o error en el servidor');
       }
 
-      const data = await response.json();
-      console.log(data)
+      // const data = 
+      await response.json();
+      // console.log(data)
     } catch (error) {
       console.error(error)
     }

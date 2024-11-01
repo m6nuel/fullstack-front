@@ -5,7 +5,9 @@ export interface UserApp {
 }
 
 export interface TemaType {
+  id?: number;
   tema: string;
+  subtema?: [];
 }
 
 export interface InitState {
