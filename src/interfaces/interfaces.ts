@@ -8,6 +8,7 @@ export interface TemaType {
   id?: number;
   tema: string;
   subtema?: [];
+  userEmail?: string;
 }
 
 export interface InitState {

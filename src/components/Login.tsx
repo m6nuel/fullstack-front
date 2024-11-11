@@ -7,6 +7,7 @@ import UserMenu from "./UserMenu";
 const Login = () => {
   const { data: user } = useUser(); // Usuario autenticado actual de Firebase
   const auth = useAuth();
+  // console.log(user)
   const { updateUser, user: userInContext, handleLogin, setInitialState, initialState } = useUserApp(); // Actualizar contexto del usuario
   // Sincronización inicial del estado del contexto con la sesión activa de Firebase
   useEffect(() => {
@@ -15,7 +16,9 @@ const Login = () => {
         try {
           await handleLogin(user);
           const token = await user.getIdToken();
+          const email = user.email;
           localStorage.setItem("authToken", token);
+          localStorage.setItem("user", email ?? "");
         } catch (error) {
           console.error("no pudimos obtener el token", error);
         }
@@ -50,6 +53,7 @@ const Login = () => {
     await signOut(auth);
     updateUser(null); // Limpia el contexto al cerrar sesión
     localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
   };
 
   // Renderizado basado en la autenticación del usuario

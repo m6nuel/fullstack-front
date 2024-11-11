@@ -1,6 +1,6 @@
 const Posts = () => {
   return (
-    <div>Posts</div>
+    <div className="text-black">Posts</div>
   )
 }
 export default Posts

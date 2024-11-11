@@ -13,9 +13,14 @@ export const useTemaApp = () => {
 
   const addTema = async (tema: TemaType): Promise<string> => {
     try {
+      // const token = await user?.getIdToken(); // Obtener el token del usuario
+      const token = localStorage.getItem('authToken')
       const res = await fetch("http://localhost:3000/api/v1/tema", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Incluir el token en el header de Authorization
+        },
         body: JSON.stringify(tema),
       });
 
