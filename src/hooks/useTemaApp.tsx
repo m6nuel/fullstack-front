@@ -43,5 +43,9 @@ export const useTemaApp = () => {
     }
   };
 
-  return { addTema, initialState, setInitialState };
+  const addSubTema = () => {
+
+  }
+
+  return { addTema, addSubTema, initialState, setInitialState };
 };

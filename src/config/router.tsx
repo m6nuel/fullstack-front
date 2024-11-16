@@ -4,6 +4,8 @@ import Home from "../components/Home";
 import Posts from "../components/Posts";
 import Perfil from "../components/Perfil";
 import Configuracion from "../components/Configuracion";
+import CreateSubTema from "../components/CreateSubTema";
+
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/configuracion",
         element: <Configuracion />,
+      },
+      {
+        path: "/createSubTema/:id", // Ruta dinámica para los temas
+        element: <CreateSubTema />, // Componente que mostrará el detalle del tema
       },
     ],
   },
