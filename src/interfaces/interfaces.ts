@@ -7,8 +7,14 @@ export interface UserApp {
 export interface TemaType {
   id?: number;
   tema: string;
-  subtema?: [];
+  subtema?: SubTemaType[];
   userEmail?: string;
+}
+
+export interface SubTemaType {
+  id?: number;
+  subtema: string;
+  description?: string;
 }
 
 export interface InitState {

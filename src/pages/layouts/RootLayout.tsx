@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import HeaderMain from "../../components/HeaderMain";
 import Footer from "../../components/Footer";
 import LeftAside from "../../components/LeftAside";
+import RigthAside from "../../components/RigthAside";
 
 const RootLayout = () => {
   const location = useLocation();
@@ -31,9 +32,9 @@ const RootLayout = () => {
           </main>
 
           {!shouldHideAside && (
-            <aside className="w-1/5 bg-gray-800 p-4 m-1 h-[calc(90vh-64px)] rounded-sm">
-              <p className="text-center font-bold">Aside derecho</p>
-            </aside>
+            // <aside className="w-1/5 bg-gray-800 p-4 m-1 h-[calc(90vh-64px)] rounded-sm">
+              <RigthAside />
+            // </aside>
           )}
         </div>
 
