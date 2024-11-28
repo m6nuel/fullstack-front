@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "../pages/layouts/RootLayout";
-import Home from "../components/Home";
-import Posts from "../components/Posts";
-import Perfil from "../components/Perfil";
 import Configuracion from "../components/Configuracion";
-import CreateSubTema from "../components/CreateSubTema";
-
+// import CreateSubTema from "../components/CreateSubTema";
+import Home from "../components/Home";
+import Perfil from "../components/Perfil";
+import Posts from "../components/Posts";
+import HomeLayout from "../pages/layouts/HomeLayout";
+import RootLayout from "../pages/layouts/RootLayout";
+// import LeftAside from "../components/LeftAside";
+import MainCreate from "../components/MainCreate";
 
 export const router = createBrowserRouter([
   {
@@ -13,24 +15,38 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: "/home", // Ruta para el layout HomeLayout
+        element: <HomeLayout />,
+        children: [
+          {
+            index: true, // Ruta index dentro de HomeLayout
+            element: <Home />,
+          },
+          {
+            path: 'creartema',
+            element: <MainCreate />
+          },
+          {
+            path: "creartema/crearsubtema/:id",
+            element: <MainCreate />,
+          },
+          {
+            path: "creartema/crearsubtema/contenido/:id",
+            element: <MainCreate />,
+          },
+        ],
       },
       {
-        path: "/posts",
+        path: "posts",
         element: <Posts />,
       },
       {
-        path: "/perfil",
+        path: "perfil",
         element: <Perfil />,
       },
       {
-        path: "/configuracion",
+        path: "configuracion",
         element: <Configuracion />,
-      },
-      {
-        path: "/createSubTema/:id", // Ruta dinámica para los temas
-        element: <CreateSubTema />, // Componente que mostrará el detalle del tema
       },
     ],
   },

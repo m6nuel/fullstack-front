@@ -26,13 +26,13 @@ const FormularioDeTema = () => {
   });
 
   return (
-    <>
+    <div className="my-2 ml-2 max-w-lg">
       <form onSubmit={formik.handleSubmit} className="flex items-center space-x-0.5">
         <input
           type="text"
           id="tema"
           name="tema"
-          placeholder="Escribe un tema"
+          placeholder="Crear un nuevo tema"
           className="w-full px-3 py-1.5 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={formik.values.tema}
           onChange={formik.handleChange}
@@ -47,8 +47,8 @@ const FormularioDeTema = () => {
         </button>
       </form>
       {/* Mensaje de error */}
-      {formik.touched.tema && formik.errors.tema ? <div className="text-red-500 text-sm mt-2">{formik.errors.tema}</div> : null}
-    </>
+      {formik.touched.tema && formik.errors.tema ? <div className="text-red-500 text-sm">{formik.errors.tema}</div> : null}
+    </div>
   );
 };
 

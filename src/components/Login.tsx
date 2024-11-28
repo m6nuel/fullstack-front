@@ -3,6 +3,7 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { useAuth, useUser } from "reactfire";
 import { useUserApp } from "../hooks/useUserApp";
 import UserMenu from "./UserMenu";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { data: user } = useUser(); // Usuario autenticado actual de Firebase
@@ -67,9 +68,11 @@ const Login = () => {
   }
 
   return (
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleGoogleSignIn}>
-      Login
-    </button>
+    <Link to="/home">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleGoogleSignIn}>
+        Login
+      </button>
+    </Link>
   );
 };
 

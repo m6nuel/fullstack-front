@@ -5,7 +5,7 @@ import { useTemaApp } from "../hooks/useTemaApp";
 
 const CreateSubTema = () => {
   const { id } = useParams();
-  const { addSubTema, initialState } = useTemaApp();
+  const { addSubTema } = useTemaApp();
   const location = useLocation();
   const titulo = location.state?.titulo;
 
@@ -75,7 +75,7 @@ const CreateSubTema = () => {
           )}
         </Formik>
       </div>
-      <div className="text-black mt-6">
+      {/* <div className="text-black mt-6">
         <h2 className="text-xl font-bold mb-4">Lista de Subtemas</h2>
         <ul className="list-disc list-inside">
           {(() => {
@@ -91,7 +91,7 @@ const CreateSubTema = () => {
             ));
           })()}
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };

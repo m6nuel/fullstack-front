@@ -17,10 +17,10 @@ const RigthAside = () => {
     return <div>Error: ID no válido</div>;
   }
   return (
-    <aside className="w-1/5 bg-gray-800 p-4 m-1 h-[calc(90vh-64px)] rounded-sm">
-      <div className="text-white mt-6">
+    <aside className="p-4 m-1 h-[calc(90vh-64px)] rounded-sm">
+      <div className="text-gray-800">
         <h2 className="text-xl font-bold mb-4">Subtemas: </h2>
-        <ul className="list-none list-item">
+        <ul className="max-w-96">
           {(() => {
             const tema = initialState.temas?.find((tema) => tema?.id === temaId);
             if (!tema || !tema.subtema || tema.subtema.length === 0) {
@@ -28,8 +28,8 @@ const RigthAside = () => {
               return <p className="text-gray-500">No hay subtemas disponibles.</p>;
             }
             return tema.subtema.map((subtema) => (
-              <li key={subtema.id} className="text-blue-500 hover:text-blue-700">
-                <Link to="">{subtema.subtema}</Link>
+              <li key={subtema.id} className="bg-slate-800 my-2 p-2 rounded">
+                <Link to={`/home/creartema/crearsubtema/contenido/${subtema.id}`} className="text-gray-50 hover:text-gray-400">{subtema.subtema}</Link>
               </li>
             ));
           })()}
