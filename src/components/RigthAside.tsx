@@ -1,3 +1,4 @@
+
 import { Link, useParams } from "react-router-dom";
 import { useTemaApp } from "../hooks/useTemaApp";
 
@@ -29,7 +30,7 @@ const RigthAside = () => {
             }
             return tema.subtema.map((subtema) => (
               <li key={subtema.id} className="bg-slate-800 my-2 p-2 rounded">
-                <Link to={`/home/creartema/crearsubtema/contenido/${subtema.id}`} className="text-gray-50 hover:text-gray-400">{subtema.subtema}</Link>
+                <Link state={{ temaId, subtema }} to={`/home/creartema/crearsubtema/contenido/${subtema.id}`} className="text-gray-50 hover:text-gray-400">{subtema.subtema}</Link>
               </li>
             ));
           })()}

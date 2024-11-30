@@ -17,6 +17,15 @@ export interface SubTemaType {
   description?: string;
 }
 
+export interface ContenidoType {
+  id?: number;
+  titulo: string;
+  descripcion1: string;
+  codigo?: string;
+  imagen?: string;
+  descripcion2?: string;
+}
+
 export interface InitState {
   user: UserApp | undefined;
   temas: TemaType[] | [];

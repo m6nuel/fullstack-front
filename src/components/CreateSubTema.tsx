@@ -2,20 +2,27 @@ import { useParams, useLocation } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useTemaApp } from "../hooks/useTemaApp";
-
 const CreateSubTema = () => {
   const { id } = useParams();
-  const { addSubTema } = useTemaApp();
+  const { addSubTema, initialState } = useTemaApp();
   const location = useLocation();
   const titulo = location.state?.titulo;
+  const temaId = location.state?.temaId;
+
+  let tituloTema = "";
+
+  if (temaId !== undefined) {
+    const temaEncontrado = initialState.temas.find((temaItem) => temaItem.id === temaId);
+    tituloTema = temaEncontrado?.tema || "Título desconocido"; // Si no encuentra el tema, mostrar "Título desconocido"
+  }
 
   if (!id) {
     console.error("ID no encontrado en la URL");
     return <div>Error: ID no válido</div>;
   }
 
-  const temaId = parseInt(id, 10);
-  if (isNaN(temaId)) {
+  const parsedTemaId = parseInt(id, 10);
+  if (isNaN(parsedTemaId)) {
     console.error("El ID proporcionado no es un número válido");
     return <div>Error: ID no válido</div>;
   }
@@ -33,7 +40,7 @@ const CreateSubTema = () => {
     { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }
   ) => {
     try {
-      await addSubTema(values, temaId); // Suponiendo que addSubTema es una función asincrónica
+      await addSubTema(values, parsedTemaId); // Suponiendo que addSubTema es una función asincrónica
       resetForm(); // Limpiar el formulario después de enviar los datos
     } catch (error) {
       console.error("Error al agregar subtema:", error);
@@ -45,15 +52,11 @@ const CreateSubTema = () => {
   return (
     <>
       <div className="max-w-lg mx-auto mt-0 p-6 bg-white text-gray-800 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">{titulo}</h1>
-        {/* <h2 className="text-xl text-gray-600 mb-6">Agregar un nuevo subtema</h2> */}
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">{titulo || tituloTema}</h1>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           {({ isSubmitting }) => (
             <Form>
               <div className="mb-4">
-                {/* <label htmlFor="subtema" className="block text-sm font-medium text-gray-700">
-                Subtema
-              </label> */}
                 <Field
                   id="subtema"
                   name="subtema"
@@ -75,23 +78,6 @@ const CreateSubTema = () => {
           )}
         </Formik>
       </div>
-      {/* <div className="text-black mt-6">
-        <h2 className="text-xl font-bold mb-4">Lista de Subtemas</h2>
-        <ul className="list-disc list-inside">
-          {(() => {
-            const tema = initialState.temas?.find((tema) => tema?.id === temaId);
-            if (!tema || !tema.subtema || tema.subtema.length === 0) {
-              // Si no hay tema o los subtemas están vacíos
-              return <p className="text-gray-500">No hay subtemas disponibles.</p>;
-            }
-            return tema.subtema.map((subtema) => (
-              <li key={subtema.id} className="text-gray-700">
-                {subtema.subtema}
-              </li>
-            ));
-          })()}
-        </ul>
-      </div> */}
     </>
   );
 };
